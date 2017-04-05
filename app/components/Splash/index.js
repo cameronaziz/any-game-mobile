@@ -4,8 +4,6 @@ import { View } from 'native-base'
 
 export default class Splash extends Component {
 
-
-
   render() {
     return (
         <View style={{alignItems: 'stretch', flex: 1}}>

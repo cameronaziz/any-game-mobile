@@ -11,10 +11,10 @@ class Registration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      email: 'e@mail.com',
-      password: 'password',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
       errors: ''
     };
   }
@@ -25,7 +25,16 @@ class Registration extends Component {
   updatePassword(password) {this.setState({password})}
 
   register(){
-    firebaseAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+    firebaseAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+      db.ref('users/' + user.uid).set({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+      });
+      this.props.navigator.push({
+        id: 'Dashboard'
+      });
+    }).catch(function(error) {
       this.setState({
         errors: error.message
       });

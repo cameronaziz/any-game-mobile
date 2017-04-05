@@ -5,6 +5,7 @@ import Style from '../../config/styles';
 import * as firebase from '../../utils/Firebase';
 const db = firebase.connectDatabase();
 const firebaseAuth = firebase.authClient();
+import Dashboard from './../Dashboard'
 
 class Login extends Component {
   constructor(props) {
@@ -19,13 +20,16 @@ class Login extends Component {
   updateEmail(email) {this.setState({email})}
   updatePassword(password) {this.setState({password})}
 
-  login(){
-    firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+  login() {
+    firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
+      this.props.navigator.push({
+        id: 'Dashboard'
+      });
+    }).catch((error) => {
       this.setState({
         errors: error.message
       });
-    }.bind(this));
-
+    })
   }
 
   back(){
