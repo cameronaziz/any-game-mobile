@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
-import { Container, Left, Header, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
+import { Header, Left, Container, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
 import * as firebase from '../../utils/Firebase';
-const firebaseApp = firebase.initFirebase();
 const db = firebase.connectDatabase();
 const firebaseAuth = firebase.authClient();
 
-class Registration extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: 'First Name',
-      lastName: 'Last Name',
       email: 'e@mail.com',
       password: 'password',
       errors: ''
     };
   }
 
-  updateFirstName(firstName) {this.setState({firstName})}
-  updateLastName(lastName) {this.setState({lastName})}
   updateEmail(email) {this.setState({email})}
   updatePassword(password) {this.setState({password})}
 
-  register(){
-    firebaseAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+  login(){
+    firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
       this.setState({
         errors: error.message
       });
     }.bind(this));
+
   }
 
   back(){
@@ -49,14 +45,9 @@ class Registration extends Component {
             </Left>
           </Header>
           <Content style={Style.content}>
-            <Text style={Style.heading}>Registration</Text>
+            <Text style={Style.heading}>Login</Text>
             <Text style={Style.error}>{this.state.errors}</Text>
             <Form>
-              <InputGroup>
-                <Icon name="md-person-add" style={Style.blueIcon} />
-                <Input ref="firstName" placeholder="FIRST NAME" onChangeText={(firstName => this.updateFirstName(firstName))} />
-                <Input ref="lastName" placeholder="LAST NAME" onChangeText={(lastName => this.updateLastName(lastName))} />
-              </InputGroup>
               <InputGroup>
                 <Icon name="md-at" style={Style.blueIcon} />
                 <Input ref="email" placeholder="EMAIL" onChangeText={(email => this.updateEmail(email))}/>
@@ -65,8 +56,8 @@ class Registration extends Component {
                 <Icon name="md-unlock" style={Style.blueIcon} />
                 <Input ref="password" placeholder="PASSWORD" secureTextEntry onChangeText={(password => this.updatePassword(password))} />
               </InputGroup>
-              <Button style={Style.blueButton} onPress={()=>this.register()}>
-                <Text>Create Account</Text>
+              <Button style={Style.blueButton} onPress={()=>this.login()}>
+                <Text>Login</Text>
               </Button>
             </Form>
           </Content>
@@ -76,4 +67,5 @@ class Registration extends Component {
 }
 
 
-export default Registration
+export default Login
+
