@@ -5,6 +5,7 @@ import { Left, Container, Header, Body, Title, Right, Icon, Button, ListItem, Li
 import Style from '../../config/styles'
 
 import * as firebase from '../../utils/Firebase';
+import AddTeam from "../AddTeam/index";
 const db = firebase.connectDatabase();
 const firebaseAuth = firebase.authClient();
 
@@ -30,16 +31,10 @@ export default class Dashboard extends Component {
     this.props.navigator.pop()
   }
 
-  clickTeam(team){
-    console.log('Clicked ');
-  }
 
 
 
   render() {
-
-
-
     return (
         <Container>
           <Header>
@@ -53,12 +48,9 @@ export default class Dashboard extends Component {
               </Button>
             </Right>
           </Header>
-          <Text>Pick a Team</Text>
-          <Picker onValueChange={(team) => this.setState({team: team})}>
-            {this.state.teams.map((i) => {
-              return <Picker.Item key={i.name} value={i.name} label={i.name} />
-            })}
-          </Picker>
+          <AddTeam/>
+
+
         </Container>
     )
   }
