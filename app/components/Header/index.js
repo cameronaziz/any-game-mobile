@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Picker, Text, TouchableHighlight, ListView, View } from 'react-native'
+import { Picker, Text, TouchableHighlight, ListView, View, AsyncStorage } from 'react-native'
 import { Left, Container, Header, Body, Title, Right, Icon, Button, ListItem, List} from 'native-base'
 
 
@@ -19,11 +19,11 @@ export default class Dashboard extends Component {
   componentDidMount() {
   }
 
-
   signOut() {
-    firebaseAuth.signOut();
-    this.props.navigator.pop()
+    this.props.signOut(this.props.navigator);
   }
+
+
 
   render() {
     return (
@@ -33,8 +33,8 @@ export default class Dashboard extends Component {
           <Title>Any Game</Title>
           </Body>
           <Right>
-            <Button transparent onPress={()=>this.signOut()}>
-              <Icon name='menu' />
+            <Button transparent onPress={this.signOut.bind(this)} >
+              <Text>Logout</Text>
             </Button>
           </Right>
         </Header>

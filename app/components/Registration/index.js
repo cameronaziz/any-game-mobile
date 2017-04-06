@@ -30,7 +30,7 @@ class Registration extends Component {
       this.register()
     } else {
       this.setState({
-        errors: 'Please agree to Terms and Conditions'
+        errors: 'Please agree to Terms'
       })
     }
   }
@@ -43,7 +43,8 @@ class Registration extends Component {
         email: this.state.email,
       });
       this.props.navigator.push({
-        id: 'Dashboard'
+        id: 'Dashboard',
+        userId: user.uid
       });
     }).catch(function(error) {
       this.setState({
@@ -68,7 +69,7 @@ class Registration extends Component {
               </Button>
             </Left>
           </Header>
-          <Content style={Style.content}>
+          <Content>
             <Text style={Style.heading}>Registration</Text>
             <Text style={Style.error}>{this.state.errors}</Text>
             <Form>
@@ -87,7 +88,7 @@ class Registration extends Component {
               </InputGroup>
               <InputGroup>
                 <View style={{flexDirection: 'row', justifyContent: 'flex-start', flex: 1}}>
-                  <Text style={{marginLeft: 10}}>I agree to Terms and Conditions</Text>
+                  <Text style={{marginLeft: 10}}>I agree to Terms</Text>
                 </View>
                 <View style={{flexDirection: 'row', justifyContent: 'flex-end', flex: 1}}>
                   <Switch

@@ -25,10 +25,6 @@ export default class LandingPage extends Component {
     })
   }
 
-  dashboard() {
-
-  }
-
   componentDidMount(){
     firebaseAuth.onAuthStateChanged((user) => {
       if (user) {

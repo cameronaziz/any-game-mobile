@@ -4,7 +4,9 @@ import { Navigator } from 'react-native';
 import Registration from './components/Registration';
 import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
-import Dashboard from "./components/Dashboard/index";
+import Header from "./components/Header";
+
+import Dashboard from "./components/Dashboard";
 
 class App extends Component {
 
@@ -17,9 +19,10 @@ class App extends Component {
       case 'Login':
         return(<Login navigator={navigator} />);
       case 'Dashboard':
-        return(<Dashboard navigator={navigator} />)
+        return(<Dashboard navigator={navigator} />);
     }
   }
+
   render() {
     return(
         <Navigator

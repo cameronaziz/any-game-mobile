@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, AsyncStorage } from 'react-native';
 import { Header, Left, Container, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
 import * as firebase from '../../utils/Firebase';
 const db = firebase.connectDatabase();
 const firebaseAuth = firebase.authClient();
-import Dashboard from './../Dashboard'
 
 class Login extends Component {
   constructor(props) {
@@ -21,15 +20,19 @@ class Login extends Component {
   updatePassword(password) {this.setState({password})}
 
   login() {
-    firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
-      this.props.navigator.push({
-        id: 'Dashboard'
-      });
+    firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
+      console.log(user);
+      AsyncStorage.setItem('userData', JSON.stringify(user));
+      console.log(AsyncStorage.getItem('userData'));
+
+      let loginDate = new Date();
+      AsyncStorage.setItem('loginTime', loginDate);
+
     }).catch((error) => {
       this.setState({
         errors: error.message
       });
-    })
+    });
   }
 
   back(){
@@ -48,7 +51,7 @@ class Login extends Component {
               </Button>
             </Left>
           </Header>
-          <Content style={Style.content}>
+          <Content>
             <Text style={Style.heading}>Login</Text>
             <Text style={Style.error}>{this.state.errors}</Text>
             <Form>

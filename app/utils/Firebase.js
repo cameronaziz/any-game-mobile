@@ -21,3 +21,7 @@ exports.connectDatabase = () => {
 exports.authClient = () => {
   return firebase.auth();
 };
+
+exports.firebase = () => {
+  return firebase
+};
