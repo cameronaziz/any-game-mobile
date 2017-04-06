@@ -1,12 +1,12 @@
 
 import React, { Component } from 'react'
-import { Picker, Text, TouchableHighlight, ListView, View } from 'react-native'
-import { Left, Container, Header, Body, Title, Right, Icon, Button, ListItem, List} from 'native-base'
-
+import { Left, Container, Body, Title, Right, Icon, Button, ListItem, List} from 'native-base'
+import Header from '../Header'
 
 
 import * as firebase from '../../utils/Firebase';
 import AddTeam from "../AddTeam/index";
+import Console from "../Console/index";
 const db = firebase.connectDatabase();
 const firebaseAuth = firebase.authClient();
 
@@ -18,6 +18,7 @@ export default class Dashboard extends Component {
   };
 
   componentDidMount() {
+
   }
 
 
@@ -27,20 +28,19 @@ export default class Dashboard extends Component {
   }
 
   render() {
+    let content;
+    firebaseAuth.onAuthStateChanged((user) => {
+      if (false) {
+        content = (<AddTeam/>)
+      } else {
+        content = (<Console/>)
+      }
+    });
+
     return (
         <Container>
-          <Header>
-            <Left/>
-            <Body>
-              <Title>Any Game</Title>
-            </Body>
-            <Right>
-              <Button transparent onPress={()=>this.signOut()}>
-                <Icon name='menu' />
-              </Button>
-            </Right>
-          </Header>
-          <AddTeam/>
+          <Header/>
+          { content }
         </Container>
     )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, View, Switch } from 'react-native';
 import { Container, Left, Header, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
 import * as firebase from '../../utils/Firebase';
@@ -15,7 +15,8 @@ class Registration extends Component {
       lastName: '',
       email: '',
       password: '',
-      errors: ''
+      errors: '',
+      agreed: false
     };
   }
 
@@ -23,6 +24,16 @@ class Registration extends Component {
   updateLastName(lastName) {this.setState({lastName})}
   updateEmail(email) {this.setState({email})}
   updatePassword(password) {this.setState({password})}
+
+  pressRegister(){
+    if(this.state.agreed){
+      this.register()
+    } else {
+      this.setState({
+        errors: 'Please agree to Terms and Conditions'
+      })
+    }
+  }
 
   register(){
     firebaseAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
@@ -74,7 +85,20 @@ class Registration extends Component {
                 <Icon name="md-unlock" style={Style.blueIcon} />
                 <Input ref="password" placeholder="PASSWORD" secureTextEntry onChangeText={(password => this.updatePassword(password))} />
               </InputGroup>
-              <Button style={Style.blueButton} onPress={()=>this.register()}>
+              <InputGroup>
+                <View style={{flexDirection: 'row', justifyContent: 'flex-start', flex: 1}}>
+                  <Text style={{marginLeft: 10}}>I agree to Terms and Conditions</Text>
+                </View>
+                <View style={{flexDirection: 'row', justifyContent: 'flex-end', flex: 1}}>
+                  <Switch
+                      onValueChange={(value) => {
+                        this.setState({agreed: value});
+                      }}
+                      style={{ marginRight: 20}}
+                      value={this.state.agreed} />
+                </View>
+              </InputGroup>
+              <Button style={Style.blueButton} onPress={()=>this.pressRegister()}>
                 <Text>Create Account</Text>
               </Button>
             </Form>
