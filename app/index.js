@@ -25,7 +25,7 @@ class App extends Component {
         <Navigator
             initialRoute={{id: 'LandingPage'}}
             renderScene={this.renderScene}
-            configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}
+            configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromBottom}
         />
     )
   }

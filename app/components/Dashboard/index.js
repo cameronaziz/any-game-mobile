@@ -2,7 +2,8 @@
 import React, { Component } from 'react'
 import { Picker, Text, TouchableHighlight, ListView, View } from 'react-native'
 import { Left, Container, Header, Body, Title, Right, Icon, Button, ListItem, List} from 'native-base'
-import Style from '../../config/styles'
+
+
 
 import * as firebase from '../../utils/Firebase';
 import AddTeam from "../AddTeam/index";
@@ -14,12 +15,6 @@ export default class Dashboard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      teams: [
-        { name: 'Lakers'},
-        { name: 'Thunder'}
-        ]
-    };
   };
 
   componentDidMount() {
@@ -30,9 +25,6 @@ export default class Dashboard extends Component {
     firebaseAuth.signOut();
     this.props.navigator.pop()
   }
-
-
-
 
   render() {
     return (
@@ -49,8 +41,6 @@ export default class Dashboard extends Component {
             </Right>
           </Header>
           <AddTeam/>
-
-
         </Container>
     )
   }

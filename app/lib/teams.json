@@ -1,0 +1,211 @@
+[ {
+  "city" : "Boston",
+  "lat" : 42.366303,
+  "lng" : -71.062228,
+  "location" : "Boston",
+  "name" : "Celtics",
+  "state" : "MA"
+}, {
+  "city" : "New York",
+  "lat" : 40.750556,
+  "lng" : -71.062228,
+  "location" : "New York",
+  "name" : "Knicks",
+  "state" : "NY"
+}, {
+  "city" : "Oakland",
+  "lat" : 37.750278,
+  "lng" : -122.203056,
+  "location" : "Golden State",
+  "name" : "Warriors",
+  "state" : "CA"
+}, {
+  "city" : "Auburn Hills",
+  "lat" : 42.696944,
+  "lng" : -83.245556,
+  "location" : "Detroit",
+  "name" : "Pistons",
+  "state" : "MI"
+}, {
+  "city" : "Sacramento",
+  "lat" : 38.649167,
+  "lng" : -121.518056,
+  "location" : "Sacramento",
+  "name" : "Kings",
+  "state" : "CA"
+}, {
+  "city" : "Los Angeles",
+  "lat" : 34.043056,
+  "lng" : -118.267222,
+  "location" : "Los Angeles",
+  "name" : "Lakers",
+  "state" : "CA"
+}, {
+  "city" : "Philadelphia",
+  "lat" : 39.901111,
+  "lng" : -75.171944,
+  "location" : "Philadelpha",
+  "name" : "76ers",
+  "state" : "PA"
+}, {
+  "city" : "Atlanta",
+  "lat" : 33.757222,
+  "lng" : -84.396389,
+  "location" : "Atlanta",
+  "name" : "Hawks",
+  "state" : "GA"
+}, {
+  "city" : "Washington",
+  "lat" : 38.898056,
+  "lng" : -77.020833,
+  "location" : "Washington",
+  "name" : "Wizards",
+  "state" : "DC"
+}, {
+  "city" : "Milwaukee",
+  "lat" : 43.043611,
+  "lng" : -87.916944,
+  "location" : "Milwaukee",
+  "name" : "Bucks",
+  "state" : "WI"
+}, {
+  "city" : "Chicago",
+  "lat" : 41.880556,
+  "lng" : -87.674167,
+  "location" : "Chicago",
+  "name" : "Bulls",
+  "state" : "IL"
+}, {
+  "city" : "Houston",
+  "lat" : 29.750833,
+  "lng" : -95.362222,
+  "location" : "Houston",
+  "name" : "Rockets",
+  "state" : "TX"
+}, {
+  "city" : "Oklahoma City",
+  "lat" : 35.463333,
+  "lng" : -97.515,
+  "location" : "Oklahoma City",
+  "name" : "Thunder",
+  "state" : "OK"
+}, {
+  "city" : "Phoenix",
+  "lat" : 33.445833,
+  "lng" : -112.071389,
+  "location" : "Phoenix",
+  "name" : "Suns",
+  "state" : "AZ"
+}, {
+  "city" : "Cleveland",
+  "lat" : 41.496389,
+  "lng" : -81.688056,
+  "location" : "Cleveland",
+  "name" : "Cavaliers",
+  "state" : "OH"
+}, {
+  "city" : "Los Angeles",
+  "lat" : 34.043056,
+  "lng" : -118.267222,
+  "location" : "Los Angeles",
+  "name" : "Clippers",
+  "state" : "CA"
+}, {
+  "city" : "Portland",
+  "lat" : 45.531667,
+  "lnt" : -122.666667,
+  "location" : "Portland",
+  "name" : "Trail Blazers",
+  "state" : "OR"
+}, {
+  "city" : "Salt Lake City",
+  "lat" : 40.768333,
+  "lng" : -111.901111,
+  "location" : "Utah",
+  "name" : "Jazz",
+  "state" : "UT"
+}, {
+  "city" : "New York",
+  "lat" : 40.68265,
+  "lng" : -73.974689,
+  "location" : "Brooklyn",
+  "name" : "Nets",
+  "state" : "NY"
+}, {
+  "city" : "Denver",
+  "lat" : 39.748611,
+  "lng" : -105.0075,
+  "location" : "Denver",
+  "name" : "Nuggets",
+  "state" : "CO"
+}, {
+  "city" : "Indianapolis",
+  "lat" : 39.763889,
+  "lng" : -86.155556,
+  "location" : "Indiana",
+  "name" : "Pacers",
+  "state" : "IN"
+}, {
+  "city" : "San Antonio",
+  "lat" : 29.426944,
+  "lng" : -98.4375,
+  "location" : "San Antonio",
+  "name" : "Spurs",
+  "state" : "TX"
+}, {
+  "city" : "Dallas",
+  "lat" : 32.790556,
+  "lng" : -96.810278,
+  "location" : "Dallas",
+  "name" : "Mavericks",
+  "state" : "TX"
+}, {
+  "city" : "Miami",
+  "lat" : 25.781389,
+  "lng" : -80.188056,
+  "location" : "Miami",
+  "name" : "Heat",
+  "state" : "FL"
+}, {
+  "city" : "Charlotte",
+  "lat" : 35.225,
+  "lng" : -80.839167,
+  "location" : "Charlotte",
+  "name" : "Hornets",
+  "state" : "NC"
+}, {
+  "city" : "Orlando",
+  "lat" : 28.539167,
+  "lng" : -81.383611,
+  "location" : "Orlando",
+  "name" : "Magic",
+  "state" : "FL"
+}, {
+  "city" : "Milwaukee",
+  "lat" : 43.043611,
+  "lng" : -87.916944,
+  "location" : "Minnesota",
+  "name" : "Timberwolves",
+  "state" : "MN"
+}, {
+  "city" : "Toronto",
+  "lat" : 43.643333,
+  "lng" : -79.379167,
+  "location" : "Toronto",
+  "name" : "Raptors",
+  "state" : "ON"
+}, {
+  "city" : "Memphis",
+  "lat" : 35.138333,
+  "lng" : -90.050556,
+  "location" : "Memphis",
+  "name" : "Grizzlies",
+  "state" : "TN"
+}, {
+  "city" : "New Orleans",
+  "lat" : 29.948889,
+  "lng" : -90.081944,
+  "location" : "New Orleans",
+  "name" : "Pelicans",
+  "state" : "LA"
+} ]
