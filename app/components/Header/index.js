@@ -5,12 +5,8 @@ import { Left, Container, Header, Body, Title, Right, Icon, Button, ListItem, Li
 
 
 
-import * as firebase from '../../utils/Firebase';
-const db = firebase.connectDatabase();
-const firebaseAuth = firebase.authClient();
 
-
-export default class Dashboard extends Component {
+export default class AppHeader extends Component {
 
   constructor(props) {
     super(props);

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { StatusBar, AsyncStorage } from 'react-native';
 import { Header, Left, Container, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
-import * as firebase from '../../utils/Firebase';
-const db = firebase.connectDatabase();
-const firebaseAuth = firebase.authClient();
+
 
 class Login extends Component {
   constructor(props) {
@@ -20,19 +18,19 @@ class Login extends Component {
   updatePassword(password) {this.setState({password})}
 
   login() {
-    firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
-      console.log(user);
-      AsyncStorage.setItem('userData', JSON.stringify(user));
-      console.log(AsyncStorage.getItem('userData'));
+    this.state.fbApp.signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(function(user) {
+          console.log(user);
+          AsyncStorage.setItem('userData', JSON.stringify(user));
+          console.log(AsyncStorage.getItem('userData'));
 
-      let loginDate = new Date();
-      AsyncStorage.setItem('loginTime', loginDate);
+          let loginDate = new Date().toDateString();
+          AsyncStorage.setItem('loginTime', loginDate);
 
-    }).catch((error) => {
-      this.setState({
-        errors: error.message
-      });
-    });
+        })
+        .catch((error) => {this.setState({
+          errors: error.message
+        });});
   }
 
   back(){

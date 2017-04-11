@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import { Text, View, Picker, Switch } from 'react-native'
 import { Button } from 'native-base'
 
-import * as firebase from '../../utils/Firebase';
-const db = firebase.connectDatabase();
-const firebaseAuth = firebase.authClient();
-
 
 import teams from '../../lib/teams.json';
 
@@ -51,7 +47,7 @@ export default class AddTeam extends Component {
 
   setUserTeam(){
     let user = firebaseAuth.currentUser;
-    db.ref('users/' + user.uid).set({
+    this.state.fbApp.database.ref('users/' + user.uid).set({
       team: this.state.team
     });
     this.props.navigator.push({

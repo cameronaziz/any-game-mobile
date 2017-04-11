@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { StatusBar, View, Switch } from 'react-native';
 import { Container, Left, Header, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
-import * as firebase from '../../utils/Firebase';
-const firebaseApp = firebase.initFirebase();
-const db = firebase.connectDatabase();
-const firebaseAuth = firebase.authClient();
 
 class Registration extends Component {
   constructor(props) {
@@ -26,18 +22,26 @@ class Registration extends Component {
   updatePassword(password) {this.setState({password})}
 
   pressRegister(){
-    if(this.state.agreed){
-      this.register()
-    } else {
+    if(this.state.firstName.length < 1) {
+      this.setState({
+        errors: 'First Name is required.'
+      });
+    } else if(this.state.lastName.length < 1) {
+      this.setState({
+        errors: 'Last Name is required.'
+      })
+    } else if(!this.state.agreed){
       this.setState({
         errors: 'Please agree to Terms'
       })
+    } else {
+      this.register()
     }
   }
 
   register(){
-    firebaseAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-      db.ref('users/' + user.uid).set({
+    this.state.fbApp.createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+      this.state.fbApp.database.ref('users/' + user.uid).set({
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,

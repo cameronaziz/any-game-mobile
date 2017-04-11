@@ -1,5 +1,3 @@
-import * as firebase from 'firebase';
-
 let config = {
   apiKey: "AIzaSyAfSurrWoFQLiX10NAlP5PkNeJOIm5346E",
   authDomain: "anygame-f7326.firebaseapp.com",
@@ -9,19 +7,4 @@ let config = {
   messagingSenderId: "198011797363"
 };
 
-
-exports.initFirebase = () => {
-  return firebase.initializeApp(config);
-};
-
-exports.connectDatabase = () => {
-  return firebase.database();
-};
-
-exports.authClient = () => {
-  return firebase.auth();
-};
-
-exports.firebase = () => {
-  return firebase
-};
+export default config

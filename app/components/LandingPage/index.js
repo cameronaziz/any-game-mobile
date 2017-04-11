@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { Image, StatusBar } from 'react-native'
 import { Container, Content, View, Button, Text } from 'native-base'
-import * as firebase from '../../utils/Firebase';
-const db = firebase.connectDatabase();
-
-const firebaseAuth = firebase.authClient();
-
+import LandingPageStyle from './style'
 
 export default class LandingPage extends Component {
 
@@ -26,14 +22,8 @@ export default class LandingPage extends Component {
   }
 
   componentDidMount(){
-    firebaseAuth.onAuthStateChanged((user) => {
-      if (user) {
-        this.props.navigator.push({
-          id: 'Dashboard'
-        });
-      }
-    });
   }
+
 
   render() {
     return (
@@ -41,8 +31,11 @@ export default class LandingPage extends Component {
           <StatusBar hidden={true} />
           <Image
               source={require('../../images/splash.png')}
-              style={{ flex: 1, height: null, width: null, resizeMode: 'cover' }}
-          />
+              style={{ flex: 1, height: null, width: null, resizeMode: 'cover' }}>
+            <View>
+              <Text style={LandingPageStyle.header}>Any Game</Text>
+            </View>
+          </Image>
             <Button block light title="Login" onPress={()=>this.login()}>
               <Text>Login</Text>
             </Button>
