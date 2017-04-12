@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StatusBar, View, Switch } from 'react-native';
 import { Container, Left, Header, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
+import * as firebase from '../../utils/firebase';
+
 
 class Registration extends Component {
   constructor(props) {
@@ -40,8 +42,8 @@ class Registration extends Component {
   }
 
   register(){
-    this.state.fbApp.createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-      this.state.fbApp.database.ref('users/' + user.uid).set({
+    firebase.auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+      firebase.db.ref('users/' + user.uid).set({
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,

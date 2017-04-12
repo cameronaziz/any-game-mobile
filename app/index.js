@@ -6,17 +6,17 @@ import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 
-
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-
   }
-
-
 
   renderScene(route, navigator) {
     switch(route.id) {

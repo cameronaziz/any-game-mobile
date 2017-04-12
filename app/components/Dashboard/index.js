@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Text, AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import { Container } from 'native-base'
 import Header from '../Header'
 import * as firebase from '../../utils/firebase';
+import AddTeam from "../AddTeam/index";
 
 
 export default class Dashboard extends Component {
@@ -34,11 +35,10 @@ export default class Dashboard extends Component {
 
 
   render() {
-    let content;
     return (
         <Container>
           <Header signOut={this.signOut} navigator={this.props.navigator}/>
-          { content }
+          <AddTeam />
         </Container>
     )
   }

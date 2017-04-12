@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Picker, Switch } from 'react-native'
 import { Button } from 'native-base'
-
-
-import teams from '../../lib/teams.json';
+import * as firebase from '../../utils/firebase';
 
 function sortByName(a,b) {
   if (a.name < b.name)
@@ -12,6 +10,7 @@ function sortByName(a,b) {
     return 1;
   return 0;
 }
+
 function sortByLocation(a,b) {
   if (a.location < b.location)
     return -1;
@@ -21,7 +20,6 @@ function sortByLocation(a,b) {
 }
 
 
-let sortedTeams = teams.sort(sortByName);
 
 export default class AddTeam extends Component {
 
@@ -29,16 +27,29 @@ export default class AddTeam extends Component {
     super(props);
     this.state = {
       team: '',
-      teams: sortedTeams,
+      sport: '',
+      teams: [],
+      sports: [],
       sortSwitch: false
     };
   };
 
+  componentWillMount(){
+    let refTeams = firebase.db.ref('teams/');
+    refTeams.once('value', (data) => {
+      this.setState({
+        teams: data.val()
+      })
+    });
+
+  }
+
   resortTeams(){
+    let resortedTeams;
     if(this.state.sortSwitch){
-      var resortedTeams = this.state.teams.sort(sortByName);
+      resortedTeams = this.state.teams.sort(sortByName);
     } else {
-      var resortedTeams = this.state.teams.sort(sortByLocation);
+      resortedTeams = this.state.teams.sort(sortByLocation);
     }
     this.setState({
       teams: resortedTeams
@@ -46,8 +57,8 @@ export default class AddTeam extends Component {
   }
 
   setUserTeam(){
-    let user = firebaseAuth.currentUser;
-    this.state.fbApp.database.ref('users/' + user.uid).set({
+    let user = firebase.auth.currentUser;
+    firebase.db.ref('users/' + user.uid).set({
       team: this.state.team
     });
     this.props.navigator.push({
@@ -59,6 +70,12 @@ export default class AddTeam extends Component {
   render() {
     return (
         <View style={{margin: 20}}>
+          <Text style={{fontSize: 22, justifyContent: 'center'}}>Pick a Sport</Text>
+          <Picker onValueChange={(sport) => this.setState({sport: sport})}>
+            {this.state.sports.map((sport, i) => {
+              return <Picker.Item key={i} value={sport} label={sport} />
+            })}
+          </Picker>
           <Text style={{fontSize: 22, justifyContent: 'center'}}>Pick a Team</Text>
           <Picker onValueChange={(team) => this.setState({team: team})}>
             {this.state.teams.map((team, i) => {

@@ -15,7 +15,11 @@
     "native-base": "^2.1.0",
     "react": "15.4.2",
     "react-native": "0.42.3",
-    "realm": "^1.2.0"
+    "react-redux": "^5.0.4",
+    "realm": "^1.2.0",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.1",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",

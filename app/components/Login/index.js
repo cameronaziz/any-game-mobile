@@ -24,7 +24,6 @@ export default class Login extends Component {
           console.log(user);
           AsyncStorage.setItem('userData', JSON.stringify(user));
           console.log(AsyncStorage.getItem('userData'));
-
           let loginDate = new Date().toDateString();
           AsyncStorage.setItem('loginTime', loginDate);
 
