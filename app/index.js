@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Navigator } from 'react-native';
 
 import Registration from './components/Registration';
-import LandingPage from "./components/LandingPage";
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import LandingPage from './components/LandingPage';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
