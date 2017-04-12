@@ -6,42 +6,28 @@ import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 
-import * as firebase from 'firebase';
-import firebaseConfig from './utils/Firebase';
 
-const fbApp = firebase.initializeApp(firebaseConfig);
 
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      fbApp: fbApp
-    }
+
   }
 
-  componentWillMount() {
-    fbApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.props.navigator.push({
-          id: 'Dashboard',
-          fbApp: this.state.fbApp
-        });
-      }
-    });
-  }
+
 
   renderScene(route, navigator) {
     switch(route.id) {
       case 'LandingPage':
-        return(<LandingPage navigator={navigator} fbApp={fbApp} />);
+        return(<LandingPage navigator={navigator} />);
       case 'Registration':
-        return(<Registration navigator={navigator} fbApp={fbApp} />);
+        return(<Registration navigator={navigator} />);
       case 'Login':
-        return(<Login navigator={navigator} fbApp={fbApp} />);
+        return(<Login navigator={navigator} />);
       case 'Dashboard':
-        return(<Dashboard navigator={navigator} fbApp={fbApp} />);
+        return(<Dashboard navigator={navigator} />);
     }
   }
 

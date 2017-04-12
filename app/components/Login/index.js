@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { StatusBar, AsyncStorage } from 'react-native';
 import { Header, Left, Container, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
+import * as firebase from '../../utils/firebase';
 
 
-class Login extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +19,7 @@ class Login extends Component {
   updatePassword(password) {this.setState({password})}
 
   login() {
-    this.state.fbApp.signInWithEmailAndPassword(this.state.email, this.state.password)
+    firebase.auth.signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(function(user) {
           console.log(user);
           AsyncStorage.setItem('userData', JSON.stringify(user));
@@ -31,6 +32,7 @@ class Login extends Component {
         .catch((error) => {this.setState({
           errors: error.message
         });});
+
   }
 
   back(){
@@ -70,7 +72,3 @@ class Login extends Component {
     );
   }
 }
-
-
-export default Login
-

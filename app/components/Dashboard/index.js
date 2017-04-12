@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
 import { Text, AsyncStorage } from 'react-native'
-import { Container, Button } from 'native-base'
+import { Container } from 'native-base'
 import Header from '../Header'
-
-
-
-import AddTeam from '../AddTeam';
-import Console from '../Console';
-
+import * as firebase from '../../utils/firebase';
 
 
 export default class Dashboard extends Component {
 
   constructor(props) {
     super(props);
-
   };
 
   componentWillMount() {
@@ -28,22 +22,10 @@ export default class Dashboard extends Component {
 
 
   componentDidMount() {
-    let key = 'G1RXZArWf0fcw8xpXz2L8GGePhVAXKqa';
-    let url = 'https://app.ticketmaster.com/discovery/v1/events.json?apikey=';
-    fetch(url + key)
-        .then((data) => {
-          console.log('Success');
-          console.log(data)
-        })
-        .catch((error) => {
-          console.log('Error');
-          console.log(error)
-        });
-
   }
 
   signOut(navigator) {
-    this.props.fbApp.auth().signOut();
+    firebase.auth.signOut();
     AsyncStorage.clear();
     navigator.push({
       id: 'LandingPage'

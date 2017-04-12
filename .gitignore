@@ -1,4 +1,4 @@
-app/utils/Firebase.js
+app/lib/firebaseConfig.js
 
 # OSX
 #

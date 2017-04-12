@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Image, StatusBar } from 'react-native'
 import { Container, Content, View, Button, Text } from 'native-base'
 import LandingPageStyle from './style'
+import * as firebase from '../../utils/firebase';
 
 export default class LandingPage extends Component {
 
@@ -21,7 +22,14 @@ export default class LandingPage extends Component {
     })
   }
 
-  componentDidMount(){
+  componentDidMount() {
+    firebase.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.props.navigator.push({
+          id: 'Dashboard',
+        });
+      }
+    });
   }
 
 
