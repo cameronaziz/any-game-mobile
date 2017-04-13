@@ -58,12 +58,9 @@ export default class AddTeam extends Component {
 
   setUserTeam(){
     let user = firebase.auth.currentUser;
-    firebase.db.ref('users/' + user.uid).set({
+    firebase.db.ref('users/' + user.uid).push({
       team: this.state.team
     });
-    this.props.navigator.push({
-      id: 'Dashboard'
-    })
 
   }
 
@@ -71,13 +68,8 @@ export default class AddTeam extends Component {
     return (
         <View style={{margin: 20}}>
           <Text style={{fontSize: 22, justifyContent: 'center'}}>Pick a Sport</Text>
-          <Picker onValueChange={(sport) => this.setState({sport: sport})}>
-            {this.state.sports.map((sport, i) => {
-              return <Picker.Item key={i} value={sport} label={sport} />
-            })}
-          </Picker>
           <Text style={{fontSize: 22, justifyContent: 'center'}}>Pick a Team</Text>
-          <Picker onValueChange={(team) => this.setState({team: team})}>
+          <Picker onValueChange={(team) => this.setState({team: team.name})}>
             {this.state.teams.map((team, i) => {
               return <Picker.Item key={i} value={team.name} label={team.location + " " + team.name} />
             })}

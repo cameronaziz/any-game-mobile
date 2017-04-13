@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, StatusBar } from 'react-native'
+import { Image, StatusBar, TouchableOpacity } from 'react-native'
 import { Container, Content, View, Button, Text } from 'native-base'
 import LandingPageStyle from './style'
 import * as firebase from '../../utils/firebase';
@@ -43,13 +43,13 @@ export default class LandingPage extends Component {
             <View>
               <Text style={LandingPageStyle.header}>Any Game</Text>
             </View>
-          </Image>
-            <Button block light title="Login" onPress={()=>this.login()}>
+            <Button style={LandingPageStyle.loginButton} block light title="Login" onPress={()=>this.login()}>
               <Text>Login</Text>
             </Button>
-            <Button block title="Register" onPress={()=>this.register()}>
-              <Text>Register</Text>
-            </Button>
+            <TouchableOpacity style={LandingPageStyle.registerButton} title="Register" onPress={()=>this.register()}>
+              <Text style={LandingPageStyle.registerText}>Register</Text>
+            </TouchableOpacity>
+          </Image>
         </View>
     )
   }

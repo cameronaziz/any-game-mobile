@@ -11,7 +11,6 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-
 class App extends Component {
 
   constructor(props) {
@@ -41,6 +40,5 @@ class App extends Component {
     )
   }
 }
-
 
 export default App
