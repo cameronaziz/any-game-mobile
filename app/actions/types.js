@@ -1,12 +1,15 @@
 //Teams
 export const SET_SEARCHED_TEAMS = 'SET_SEARCHED_TEAMS';
 export const SET_USER_TEAM = 'SET_USER_TEAM';
+export const SET_ALL_USER_TEAMS = 'SET_ALL_USER_TEAMS';
 
 //Sports
 export const SET_SEARCHED_SPORTS = 'SET_SEARCHED_SPORTS';
 
 //Login
 export const AUTHENTICATED_USER = 'AUTHENTICATED_USER';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
 
 //Navigation

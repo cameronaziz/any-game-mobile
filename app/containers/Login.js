@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { StatusBar, View, Text, ActivityIndicator} from 'react-native';
-import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
-import Style from './globalStyle';
 import { connect } from 'react-redux';
+import { ActionCreators } from '../actions';
+
+import globalStyle from './globalStyle';
+import loginStyle from './loginStyle';
+
+import { View, Text, ActivityIndicator} from 'react-native';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 
 
 class Login extends Component {
@@ -14,7 +17,6 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      submitted: false
     };
 
   }
@@ -22,38 +24,48 @@ class Login extends Component {
   loginPress(email, password) {
     email = 'e@mail.com';
     password = 'password';
-    this.setState({
-      submitted: true
-    });
     this.props.loginUser(email, password);
   }
 
-  render() {
 
-    if (!this.props.loading && this.state.submitted) {
-      console.log('Logged in user:' + this.props.currentUser.uid);
-      this.props.navigate({ key: 'Dashboard'})
+  componentDidUpdate() {
+    if (this.props.loginSuccess) {
+      console.log('Logged In User')
+
+      //this.props.navigate({ key: 'dashboard'});
     }
+  }
 
+  render() {
     return (
-        <View>
-          <StatusBar hidden={true} />
-          <Text style={[Style.title, Style.margin]}>Login</Text>
-          <FormLabel>Email</FormLabel>
-          <FormInput
-              onChangeText={(email) => this.setState({email})}/>
-          <FormLabel>Password</FormLabel>
-          <FormInput
-              secureTextEntry={true}
-              onChangeText={(password) => this.setState({password})}/>
-          <Button
-              title='Login'
-              onPress={() => this.loginPress()}/>
-          {this.props.loading ? (
-              <ActivityIndicator/>
-          ) : (
-             null
-          )}
+        <View style={ loginStyle.container }>
+          <View style={ loginStyle.loginTitle}>
+            <Text style={[globalStyle.title, globalStyle.margin]}>Login</Text>
+            <Text style={globalStyle.error}>{ this.props.loginError.message }</Text>
+          </View>
+          <View style={ loginStyle.loginFields }>
+            <View style={loginStyle.formFields}>
+              {this.props.loading ? (
+                  <ActivityIndicator style={loginStyle.activity} size='large'/>
+              ) : (
+                  <View>
+                    <FormLabel>Email</FormLabel>
+                    <FormInput
+                        onChangeText={(email) => this.setState({email})}/>
+                    <FormLabel>Password</FormLabel>
+                    <FormInput
+                        secureTextEntry={true}
+                        onChangeText={(password) => this.setState({password})}/>
+                  </View>
+              )}
+            </View>
+            <View style={loginStyle.submitButton}>
+              <Button
+                  title='Login'
+                  onPress={() => this.loginPress()}/>
+            </View>
+
+          </View>
         </View>
     )
   }
@@ -61,8 +73,9 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.authenticatedUser,
-    loading: state.currentlyLoading
+    loading: state.currentlyLoading,
+    loginError: state.loginError,
+    loginSuccess: state.loginSuccess
   }
 }
 

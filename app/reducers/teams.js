@@ -12,3 +12,9 @@ export const userTeam = createReducer({}, {
     return action.team
   },
 });
+
+export const allUserTeams = createReducer({}, {
+  [types.SET_ALL_USER_TEAMS](state, action) {
+    return action.userTeams
+  },
+});

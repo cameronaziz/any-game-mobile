@@ -12,3 +12,15 @@ export const currentlyLoading = createReducer(false, {
     return action.currentlyLoading;
   },
 });
+
+export const loginError = createReducer({}, {
+  [types.LOGIN_ERROR](state, action) {
+    return action.error;
+  },
+});
+
+export const loginSuccess = createReducer({}, {
+  [types.LOGIN_ERROR](state, action) {
+    return action.success;
+  },
+});

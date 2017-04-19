@@ -6,7 +6,7 @@ import { jsUcFirst } from '../utils/helpful';
 
 let defaultSport = 'basketball';
 
-class Dashboard extends Component {
+class PickTeam extends Component {
 
   constructor(props) {
     super(props);
@@ -18,7 +18,6 @@ class Dashboard extends Component {
 
   sportPicked(sport) {
     this.setState({
-      // loading: true,
       sportInput: sport,
       teamInput: ''
     });
@@ -91,4 +90,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(PickTeam)

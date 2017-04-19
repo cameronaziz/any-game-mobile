@@ -26,10 +26,21 @@ export function setTeam(sport, team, user) {
 }
 
 export function getTeam(user, sport) {
-  user = userId;
+  user = user.uid;
   return(dispatch, getState) => {
     firebase.db.ref('/users/' + user + '/teams/' + sport).on('value', function (snapshot) {
       dispatch(setUserTeam({team: snapshot.val()}));
+    },function (error) {
+      console.log(error)
+    })
+  }
+}
+
+export function getAllUserTeams(user) {
+  user = user.uid;
+  return(dispatch, getState) => {
+    firebase.db.ref('/users/' + user + '/teams/').on('value', function (snapshot) {
+      dispatch(setAllUserTeams({userTeams: snapshot.val()}));
     },function (error) {
       console.log(error)
     })
@@ -47,5 +58,13 @@ export function setUserTeam( { team } ) {
   return {
     type: types.SET_USER_TEAM,
     team
+  }
+}
+
+
+export function setAllUserTeams( { userTeams } ) {
+  return {
+    type: types.SET_ALL_USER_TEAMS,
+    userTeams
   }
 }

@@ -1,17 +1,19 @@
 export default {
-
-  loginButton: {
-    marginTop: 150,
-    opacity: 0.1,
-    height: 50,
-  },
-  registerButton: {
-    height: 50,
+  landingButton: {
+    marginBottom: 10,
   },
   registerText: {
     textAlign: 'center',
-    color: '#FFF',
     fontSize: 20,
     marginTop: 15,
+  },
+  header: {
+    backgroundColor:'transparent',
+    marginTop: 200,
+    color: '#FFF',
+    fontSize: 70,
+    marginBottom: 150,
+    textAlign: 'center',
+    fontWeight: 'bold',
   }
 }

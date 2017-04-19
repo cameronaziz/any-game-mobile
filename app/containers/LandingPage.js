@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Image, StatusBar, TouchableOpacity, Button, View, Text } from 'react-native';
-
+import { Image, StatusBar, TouchableOpacity, View, Text } from 'react-native';
 import { ActionCreators } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import LandingPageStyle from './landingStyle'
 import globalStyle from './globalStyle'
+import { Button } from 'react-native-elements';
+
 
 class LandingPage extends Component {
-
   constructor(props){
     super(props)
   }
@@ -21,28 +21,25 @@ class LandingPage extends Component {
               source={require('../images/splash.png')}
               style={globalStyle.stretchImage} >
             <View>
-              <Text style={globalStyle.header}>Any Game</Text>
+              <Text style={LandingPageStyle.header}>Any Game</Text>
+              <Button style={LandingPageStyle.landingButton} title="Login" backgroundColor="#2a4629" onPress={ () => this.props.navigate({ key: 'Login'}) }>
+                <Text>Login</Text>
+              </Button>
+              <Button style={LandingPageStyle.landingButton} title="Register" backgroundColor="#c3a73d" onPress={ () => this.props.navigate({ key: 'Login'}) }>
+                <Text>Register</Text>
+              </Button>
             </View>
-            <Button style={LandingPageStyle.loginButton} title="Login" onPress={ () => this.props.navigate({ key: 'Login'}) }>
-              <Text>Login</Text>
-            </Button>
-            <Button style={LandingPageStyle.registerButton} title="Register" onPress={ () => this.props.navigate({ key: 'Login'}) }>
-              <Text style={LandingPageStyle.registerText}>Register</Text>
-            </Button>
           </Image>
         </View>
     )
   }
 }
 
-
 function mapStateToProps(state) {
   return {
     navigationParams: state.navigationParams,
   };
 }
-
-
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);

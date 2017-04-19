@@ -37,17 +37,14 @@ export default {
     backgroundColor: '#DDD',
     alignItems: 'stretch',
     height: '100%',
-    flex: 1
   },
   loadingContainer: {
-    flex: 1,
     right: 0,
     left: 0,
     alignItems: 'center',
   },
   //global elements
   buttonContainer: {
-    flex: 1,
     position: 'absolute',
     bottom: -80,
     right: 40,
@@ -60,6 +57,11 @@ export default {
   },
   button: {
     fontWeight: 'bold',
+  },
+  error: {
+    textAlign: 'center',
+    color: '#F00',
+    marginTop: 10
   },
   margin: {
     marginTop: 30

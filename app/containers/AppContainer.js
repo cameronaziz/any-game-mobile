@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
-import flexStyle from './globalStyle'
-import { Animated, View, NavigationExperimental } from 'react-native';
+import { Animated, View, NavigationExperimental, StyleSheet } from 'react-native';
 
 const { PropTypes: NavigationPropTypes, StateUtils: NavigationStateUtils, Card: NavigationCard, Transitioner: NavigationTransitioner } = NavigationExperimental;
 const { PagerStyleInterpolator: NavigationPagerStyleInterpolator } = NavigationCard;
@@ -38,7 +37,7 @@ class AppContainer extends Component {
       return this._renderScene(sceneProps);
     });
     return (
-        <View style={ { flex: 1 } }>
+        <View style={ { flex: 1} }>
           {scenes}
         </View>
     );
@@ -59,13 +58,13 @@ class SceneContainer extends Component {
 
   render() {
     const style = [
-      flexStyle.scene,
+      styles.scene,
       NavigationPagerStyleInterpolator.forHorizontal(this.props)
     ];
     let Scene = null;
+    if (this.props.scene.route.key === 'ApplicationTabs') { Scene = ApplicationTabs }
     if (this.props.scene.route.key === 'LandingPage') { Scene = LandingPage }
     if (this.props.scene.route.key === 'Login') { Scene = Login }
-    if (this.props.scene.route.key === 'ApplicationTabs') { Scene = ApplicationTabs }
     return  (
         <Animated.View style={style}>
           <Scene {...this.props} style={style} />
@@ -73,6 +72,17 @@ class SceneContainer extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  scene: {
+    flex: 1,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
+});
 
 
 function mapDispatchToProps(dispatch) {

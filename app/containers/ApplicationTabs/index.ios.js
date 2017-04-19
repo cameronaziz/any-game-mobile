@@ -5,6 +5,7 @@ import { ActionCreators } from '../../actions';
 import { bindActionCreators } from 'redux';
 import Dashboard from './../Dashboard';
 import style from '../globalStyle';
+import PickTeam from './../PickTeam'
 
 class ApplicationTabs extends Component {
 
@@ -37,12 +38,12 @@ class ApplicationTabs extends Component {
           { this.renderScene(Dashboard) }
           </TabBarIOS.Item>
           <TabBarIOS.Item
-              systemIcon="favorites"
+              systemIcon="more"
               iconSize={25}
               onPress={() => { return this.onPress(1) } }
-              selectedIconName="favorites"
+              selectedIconName="more"
               selected={this.props.tabs.index === 1}>
-            { this.renderScene(Dashboard) }
+            { this.renderScene(PickTeam) }
           </TabBarIOS.Item>
         </TabBarIOS>
     )
