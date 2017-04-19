@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StatusBar, AsyncStorage } from 'react-native';
 import { Header, Left, Container, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
-import * as firebase from '../../utils/firebase';
+import * as firebase from '../../lib/firebase';
 
 
 export default class Login extends Component {

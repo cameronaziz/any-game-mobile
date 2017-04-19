@@ -11,15 +11,14 @@ import {
   Text,
   View
 } from 'react-native';
-import App from './app/index';
+
+import App from './app/index'
 
 
 export default class anyGame extends Component {
   render() {
     return (
-        <View>
-        <Text style={styles.container}>Hello</Text>
-        </View>
+        <App/>
     );
   }
 }

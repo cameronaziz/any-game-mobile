@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Picker, Switch } from 'react-native'
 import { Button } from 'native-base'
-import * as firebase from '../../utils/firebase';
+import * as firebase from '../../lib/firebase';
 
 function sortByName(a,b) {
   if (a.name < b.name)

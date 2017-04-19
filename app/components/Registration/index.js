@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StatusBar, View, Switch } from 'react-native';
 import { Container, Left, Header, Content, Form, InputGroup, Input, Icon, Text, Button } from 'native-base';
 import Style from '../../config/styles';
-import * as firebase from '../../utils/firebase';
+import * as firebase from '../../lib/firebase';
 
 
 class Registration extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { AsyncStorage } from 'react-native'
 import { Container } from 'native-base'
 import Header from '../Header'
-import * as firebase from '../../utils/firebase';
+import * as firebase from '../../lib/firebase';
 import AddTeam from "../AddTeam/index";
 
 

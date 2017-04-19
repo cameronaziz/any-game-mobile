@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Image, StatusBar, TouchableOpacity } from 'react-native'
 import { Container, Content, View, Button, Text } from 'native-base'
 import LandingPageStyle from './style'
-import * as firebase from '../../utils/firebase';
+import * as firebase from '../../lib/firebase';
 
 export default class LandingPage extends Component {
 
@@ -10,17 +10,6 @@ export default class LandingPage extends Component {
     super(props)
   }
 
-  login() {
-    this.props.navigator.push({
-      id: 'Login'
-    })
-  }
-
-  register() {
-    this.props.navigator.push({
-      id: 'Registration'
-    })
-  }
 
   componentDidMount() {
     firebase.auth.onAuthStateChanged((user) => {

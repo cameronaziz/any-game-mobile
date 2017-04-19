@@ -1,44 +1,30 @@
-import React, { Component } from 'react';
-import { Navigator } from 'react-native';
-
-import Registration from './components/Registration';
-import LandingPage from './components/LandingPage';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
+import React from 'react';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
+import reducer from './reducers';
+import AppContainer from "./containers/AppContainer";
 
-class App extends Component {
+const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
-  constructor(props) {
-    super(props);
-  }
-
-  renderScene(route, navigator) {
-    switch(route.id) {
-      case 'LandingPage':
-        return(<LandingPage navigator={navigator} />);
-      case 'Registration':
-        return(<Registration navigator={navigator} />);
-      case 'Login':
-        return(<Login navigator={navigator} />);
-      case 'Dashboard':
-        return(<Dashboard navigator={navigator} />);
-    }
-  }
-
-  render() {
-    return(
-        <Navigator
-            initialRoute={{id: 'LandingPage'}}
-            renderScene={this.renderScene}
-            configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromBottom}
-        />
-    )
-  }
+function configureStore(initialState) {
+  const enhancer = compose(
+      applyMiddleware(
+          thunkMiddleware,
+          loggerMiddleware,
+      ),
+  );
+  return createStore(reducer, initialState, enhancer)
 }
+
+const store = configureStore({});
+
+const App = () => (
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>
+);
 
 export default App

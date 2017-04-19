@@ -1,0 +1,18 @@
+//Teams
+export const SET_SEARCHED_TEAMS = 'SET_SEARCHED_TEAMS';
+export const SET_USER_TEAM = 'SET_USER_TEAM';
+
+//Sports
+export const SET_SEARCHED_SPORTS = 'SET_SEARCHED_SPORTS';
+
+//Login
+export const AUTHENTICATED_USER = 'AUTHENTICATED_USER';
+
+
+//Navigation
+export const SET_TAB = 'SET_TAB';
+export const NAVIGATION_FORWARD = 'NAVIGATION_FORWARD';
+export const NAVIGATION_BACK = 'NAVIGATION_BACK';
+
+//Global
+export const CURRENTLY_LOADING = 'CURRENTLY_LOADING';
