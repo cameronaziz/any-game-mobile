@@ -9,10 +9,10 @@ export default {
   },
   header: {
     backgroundColor:'transparent',
-    marginTop: 200,
+    marginTop: 190,
     color: '#FFF',
     fontSize: 70,
-    marginBottom: 150,
+    marginBottom: 250,
     textAlign: 'center',
     fontWeight: 'bold',
   }

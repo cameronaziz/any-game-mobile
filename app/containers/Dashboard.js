@@ -7,28 +7,25 @@ import globalStyle from './globalStyle';
 
 import { TouchableHighlight, StatusBar, View, Text } from 'react-native';
 
-
 class Dashboard extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      basketballTeam: '',
-      footballTeam: ''
-    };
-
   }
 
+
   getData() {
-      this.props.getAllUserTeams(this.props.user);
-      console.log(this.props.UserTeams);
-      if (this.props.UserTeams) {
-      this.setState({
-        basketballTeam: this.props.UserTeams.basketball,
-        footballTeam: this.props.UserTeams.football
-      })
-    }
+    console.log(this.props.authenticatedUser);
+    console.log(this.props.allUserTeams);
+  }
+
+  getGames() {
+    this.props.fetchGames();
+  }
+
+  componentWillMount() {
+    this.props.getAllUserTeams(this.props.authenticatedUser);
+    console.log('In Will Mount' + this.props.allUserTeams);
   }
 
   render() {
@@ -39,9 +36,16 @@ class Dashboard extends Component {
               onPress={ () => {this.getData()} } >
             <Text style={[globalStyle.title, globalStyle.margin]}>The Dashboard</Text>
           </TouchableHighlight>
-          <Text>Football Team: {this.state.footballTeam.team}</Text>
-          <Text>Basketball Team: {this.state.basketballTeam.team}</Text>
-
+          <TouchableHighlight
+              onPress={ () => {this.getGames()} } >
+            <Text>User ID: {this.props.authenticatedUser.uid}</Text>
+          </TouchableHighlight>
+          {this.props.allUserTeams.football ? (
+              <Text>Football Team: {this.props.allUserTeams.football.team}</Text>
+          ) : (null)}
+          {this.props.allUserTeams.basketball ? (
+              <Text>Basketball Team: {this.props.allUserTeams.basketball.team}</Text>
+          ) : (null)}
         </View>
     )
   }
@@ -49,9 +53,9 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.authenticatedUser,
+    authenticatedUser: state.authenticatedUser,
     loading: state.currentlyLoading,
-    UserTeams: state.allUserTeams
+    allUserTeams: state.allUserTeams
   }
 }
 

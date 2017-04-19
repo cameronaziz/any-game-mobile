@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Image, StatusBar, TouchableOpacity, View, Text } from 'react-native';
-import { ActionCreators } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import LandingPageStyle from './landingStyle'
-import globalStyle from './globalStyle'
-import { Button } from 'react-native-elements';
+import { ActionCreators } from '../actions';
 
+import LandingPageStyle from './landingStyle'
+import globalStyle from './globalStyle';
+
+import { Image, StatusBar, View, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 
 class LandingPage extends Component {
   constructor(props){

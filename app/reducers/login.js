@@ -19,8 +19,8 @@ export const loginError = createReducer({}, {
   },
 });
 
-export const loginSuccess = createReducer({}, {
-  [types.LOGIN_ERROR](state, action) {
+export const loginSuccess = createReducer(false, {
+  [types.LOGIN_SUCCESS](state, action) {
     return action.success;
   },
 });

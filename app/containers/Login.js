@@ -18,7 +18,6 @@ class Login extends Component {
       email: '',
       password: '',
     };
-
   }
 
   loginPress(email, password) {
@@ -30,9 +29,8 @@ class Login extends Component {
 
   componentDidUpdate() {
     if (this.props.loginSuccess) {
-      console.log('Logged In User')
-
-      //this.props.navigate({ key: 'dashboard'});
+      console.log('Logged In User');
+      this.props.navigate({ key: 'dashboard'});
     }
   }
 
@@ -64,7 +62,6 @@ class Login extends Component {
                   title='Login'
                   onPress={() => this.loginPress()}/>
             </View>
-
           </View>
         </View>
     )

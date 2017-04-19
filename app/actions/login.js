@@ -9,19 +9,21 @@ export function loginUser(email, password) {
     console.log('Logging in user ' + email);
     firebase.auth.signInWithEmailAndPassword(email, password)
         .then((user) => {
-          dispatch(setLoginSuccess( true ));
+          dispatch(setAuthenticatedUser({user}));
+          let loginSuccess = true;
+          dispatch(setLoginSuccess({ loginSuccess }));
           currentlyLoading = false;
-          dispatch(loading.setLoading( { currentlyLoading }));
+          dispatch(loading.setLoading({ currentlyLoading }));
         })
         .catch((error) => {
           dispatch(setLoginError( error ));
           currentlyLoading = false;
-          dispatch(loading.setLoading( { currentlyLoading }));
+          dispatch(loading.setLoading({ currentlyLoading }));
     });
   }
 }
 
-export function setAuthenticatedUser( { user } ) {
+export function setAuthenticatedUser({ user }) {
   return {
     type: types.AUTHENTICATED_USER,
     user
