@@ -1,6 +1,8 @@
 import * as types from './types';
 import * as firebase from '../lib/firebase';
 import * as loading from './loading';
+import { AsyncStorage } from 'react-native';
+
 
 export function loginUser(email, password) {
   return(dispatch, getState) => {
@@ -10,6 +12,12 @@ export function loginUser(email, password) {
     firebase.auth.signInWithEmailAndPassword(email, password)
         .then((user) => {
           dispatch(setAuthenticatedUser({user}));
+          AsyncStorage.setItem('USER', JSON.stringify(user));
+          firebase.db.ref('/users/' + user.uid ).on('value', function (snapshot) {
+            AsyncStorage.setItem('USER_DATA', JSON.stringify(snapshot.val()));
+          },function (error) {
+            console.log(error)
+          });
           let loginSuccess = true;
           dispatch(setLoginSuccess({ loginSuccess }));
           currentlyLoading = false;

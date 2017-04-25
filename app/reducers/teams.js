@@ -18,3 +18,9 @@ export const allUserTeams = createReducer({}, {
     return action.userTeams
   },
 });
+
+export const teamSlugs = createReducer({}, {
+  [types.SET_TEAM_SLUG](state, action) {
+    return action.slug
+  },
+});

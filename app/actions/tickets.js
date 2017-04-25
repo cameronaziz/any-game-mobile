@@ -3,7 +3,7 @@ import seatGeetConfig from './../lib/seatGeekConfig';
 
 let auth = seatGeetConfig.clientId + ':' + seatGeetConfig.clientSecret;
 
-export function fetchGames() {
+export function fetchGames(slug) {
   return(dispatch, getState) => {
     fetch('https://api.seatgeek.com/2/events?performers.slug=los-angeles-dodgers', {
       method: 'get',
@@ -15,6 +15,5 @@ export function fetchGames() {
         console.log(data);
       });
     });
-
   }
 }

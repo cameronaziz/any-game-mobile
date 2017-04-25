@@ -21,15 +21,17 @@ class Login extends Component {
   }
 
   loginPress(email, password) {
-    email = 'e@mail.com';
-    password = 'password';
+    if (__DEV__) {
+      email = 'e@mail.com';
+      password = 'password';
+    }
     this.props.loginUser(email, password);
   }
 
 
   componentDidUpdate() {
     if (this.props.loginSuccess) {
-      console.log('Logged In User');
+      this.props.getAllUserTeams(this.props.authenticatedUser);
       this.props.navigate({ key: 'dashboard'});
     }
   }
@@ -70,6 +72,7 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
+    authenticatedUser: state.authenticatedUser,
     loading: state.currentlyLoading,
     loginError: state.loginError,
     loginSuccess: state.loginSuccess

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StatusBar, Picker, View, Text, Button, ActivityIndicator } from 'react-native';
+import { StatusBar, Picker, View, Text, ActivityIndicator } from 'react-native';
+import { Button } from 'react-native-elements'
 import globalStyle from './globalStyle';
 import { connect } from 'react-redux';
 import { jsUcFirst } from '../utils/helpful';
@@ -36,7 +37,7 @@ class PickTeam extends Component {
   }
 
   sports() {
-    return Object.keys(this.props.searchedSports)
+    return Object.keys(this.props.sports)
   }
 
   teams() {
@@ -73,7 +74,7 @@ class PickTeam extends Component {
               </View>
           }
           <View style={globalStyle.buttonContainer}>
-            <Button style={globalStyle.button} title="Set Team" color="#FFF" onPress={() => this.teamPicked()}/>
+            <Button title="Set Team" backgroundColor="#2a4629" onPress={() => this.teamPicked()}/>
           </View>
         </View>
     )
@@ -84,7 +85,7 @@ function mapStateToProps(state) {
   return {
     user: state.authenticatedUser,
     searchedTeams: state.searchedTeams,
-    searchedSports: state.searchedSports,
+    sports: state.sports,
     loading: state.currentlyLoading
 
   }

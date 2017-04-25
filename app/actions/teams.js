@@ -40,6 +40,7 @@ export function getAllUserTeams(user) {
   user = user.uid;
   return(dispatch, getState) => {
     firebase.db.ref('/users/' + user + '/teams/').on('value', function (snapshot) {
+
       console.log(snapshot.val());
       dispatch(setAllUserTeams({userTeams: snapshot.val()}));
     },function (error) {
@@ -61,8 +62,13 @@ export function setUserTeam( { team } ) {
     team
   }
 }
+export function setSlug(  slug  ) {
+  return {
+    type: types.SET_TEAM_SLUG,
+    slug
+  }
 
-
+}
 export function setAllUserTeams( { userTeams } ) {
   return {
     type: types.SET_ALL_USER_TEAMS,

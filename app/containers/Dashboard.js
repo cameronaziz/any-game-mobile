@@ -5,27 +5,24 @@ import { ActionCreators } from '../actions';
 
 import globalStyle from './globalStyle';
 
+import { AsyncStorage } from 'react-native';
+
 import { TouchableHighlight, StatusBar, View, Text } from 'react-native';
 
 class Dashboard extends Component {
-
   constructor(props) {
     super(props);
   }
 
-
   getData() {
+    AsyncStorage.clear();
     console.log(this.props.authenticatedUser);
     console.log(this.props.allUserTeams);
   }
 
-  getGames() {
-    this.props.fetchGames();
-  }
-
-  componentWillMount() {
-    this.props.getAllUserTeams(this.props.authenticatedUser);
-    console.log('In Will Mount' + this.props.allUserTeams);
+  getGames(sport) {
+    this.props.fetchSlug(this.props.allUserTeams.baseball.team);
+    //this.props.fetchGames();
   }
 
   render() {
@@ -37,16 +34,10 @@ class Dashboard extends Component {
             <Text style={[globalStyle.title, globalStyle.margin]}>The Dashboard</Text>
           </TouchableHighlight>
           <TouchableHighlight
-              onPress={ () => {this.getGames()} } >
+              onPress={ () => {this.getGames('baseball')} } >
             <Text>User ID: {this.props.authenticatedUser.uid}</Text>
           </TouchableHighlight>
-          {this.props.allUserTeams.football ? (
-              <Text>Football Team: {this.props.allUserTeams.football.team}</Text>
-          ) : (null)}
-          {this.props.allUserTeams.basketball ? (
-              <Text>Basketball Team: {this.props.allUserTeams.basketball.team}</Text>
-          ) : (null)}
-        </View>
+          </View>
     )
   }
 }

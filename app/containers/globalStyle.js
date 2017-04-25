@@ -51,7 +51,6 @@ export default {
     left: 40,
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#733'
   },
   picker: {
   },
