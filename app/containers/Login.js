@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ActionCreators } from '../actions';
 
 import globalStyle from './globalStyle';
-import loginStyle from './loginStyle';
+import LoginStyle from './ContainerStyles/LoginStyle';
 
 import { View, Text, ActivityIndicator} from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
@@ -38,15 +38,15 @@ class Login extends Component {
 
   render() {
     return (
-        <View style={ loginStyle.container }>
-          <View style={ loginStyle.loginTitle}>
+        <View style={ LoginStyle.container }>
+          <View style={ LoginStyle.loginTitle}>
             <Text style={[globalStyle.title, globalStyle.margin]}>Login</Text>
             <Text style={globalStyle.error}>{ this.props.loginError.message }</Text>
           </View>
-          <View style={ loginStyle.loginFields }>
-            <View style={loginStyle.formFields}>
+          <View style={ LoginStyle.loginFields }>
+            <View style={LoginStyle.formFields}>
               {this.props.loading ? (
-                  <ActivityIndicator style={loginStyle.activity} size='large'/>
+                  <ActivityIndicator style={LoginStyle.activity} size='large'/>
               ) : (
                   <View>
                     <FormLabel>Email</FormLabel>
@@ -59,7 +59,7 @@ class Login extends Component {
                   </View>
               )}
             </View>
-            <View style={loginStyle.submitButton}>
+            <View style={LoginStyle.submitButton}>
               <Button
                   title='Login'
                   onPress={() => this.loginPress()}/>

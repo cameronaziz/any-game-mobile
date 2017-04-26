@@ -5,8 +5,8 @@ import { ActionCreators } from '../actions';
 import { AsyncStorage } from 'react-native';
 
 
-import LandingPageStyle from './landingStyle'
-import globalStyle from './globalStyle';
+import LandingPageStyle from './ContainerStyles/LandingPageStyle'
+import GlobalStyle from './ContainerStyles/GlobalStyle';
 
 
 import { Image, StatusBar, View, Text } from 'react-native';
@@ -18,11 +18,11 @@ class LandingPage extends Component {
   }
   render() {
     return (
-        <View style={globalStyle.stretchView}>
+        <View style={GlobalStyle.stretchView}>
           <StatusBar hidden={true} />
           <Image
               source={require('../images/splash.png')}
-              style={globalStyle.stretchImage} >
+              style={GlobalStyle.stretchImage} >
             <View>
               <Text style={LandingPageStyle.header}>Any Game</Text>
               <Button style={LandingPageStyle.landingButton} title="Login" backgroundColor="#2a4629" onPress={ () => this.props.navigate({ key: 'Login'}) }>
