@@ -20,11 +20,6 @@ class Dashboard extends Component {
     console.log(this.props.allUserTeams);
   }
 
-  getGames(sport) {
-    this.props.fetchSlug(this.props.allUserTeams.baseball.team);
-    //this.props.fetchGames();
-  }
-
   render() {
     return (
         <View>
@@ -33,10 +28,7 @@ class Dashboard extends Component {
               onPress={ () => {this.getData()} } >
             <Text style={[globalStyle.title, globalStyle.margin]}>The Dashboard</Text>
           </TouchableHighlight>
-          <TouchableHighlight
-              onPress={ () => {this.getGames('baseball')} } >
             <Text>User ID: {this.props.authenticatedUser.uid}</Text>
-          </TouchableHighlight>
           </View>
     )
   }
