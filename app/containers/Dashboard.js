@@ -14,10 +14,8 @@ class Dashboard extends Component {
     super(props);
   }
 
-  getData() {
+  clearAsync() {
     AsyncStorage.clear();
-    console.log(this.props.authenticatedUser);
-    console.log(this.props.allUserTeams);
   }
 
   render() {
@@ -25,7 +23,7 @@ class Dashboard extends Component {
         <View>
           <StatusBar hidden={true} />
           <TouchableHighlight
-              onPress={ () => {this.getData()} } >
+              onPress={ () => {this.clearAsync()} } >
             <Text style={[globalStyle.title, globalStyle.margin]}>The Dashboard</Text>
           </TouchableHighlight>
             <Text>User ID: {this.props.authenticatedUser.uid}</Text>
