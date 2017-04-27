@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import { ActionCreators } from '../actions';
 import { AsyncStorage } from 'react-native';
 
-
 import LandingPageStyle from './ContainerStyles/LandingPageStyle'
 import GlobalStyle from './ContainerStyles/GlobalStyle';
-
 
 import { Image, StatusBar, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
@@ -16,6 +14,13 @@ class LandingPage extends Component {
   constructor(props){
     super(props)
   }
+
+  componentWillMount() {
+      if(this.props.user) {
+
+      }
+  }
+
   render() {
     return (
         <View style={GlobalStyle.stretchView}>

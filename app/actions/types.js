@@ -12,11 +12,10 @@ export const AUTHENTICATED_USER = 'AUTHENTICATED_USER';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-
 //Navigation
 export const SET_TAB = 'SET_TAB';
 export const NAVIGATION_FORWARD = 'NAVIGATION_FORWARD';
 export const NAVIGATION_BACK = 'NAVIGATION_BACK';
 
-//Global
+//Loading
 export const CURRENTLY_LOADING = 'CURRENTLY_LOADING';

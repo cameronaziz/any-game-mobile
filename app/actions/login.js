@@ -1,35 +1,34 @@
+//Settings
 import * as types from './types';
 import * as firebase from '../lib/firebase';
+
+//Actions
 import * as loading from './loading';
+import * as users from './users';
+
+//Components
 import { AsyncStorage } from 'react-native';
 
+//Actions
 export function loginUser(email, password) {
     return (dispatch, getState) => {
-        let currentlyLoading = true;
-        dispatch(loading.setLoading({ currentlyLoading }));
-        console.log('Logging in user ' + email);
+        dispatch(loading.setLoading( true ));
         firebase.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
-                dispatch(setAuthenticatedUser({ user }));
                 AsyncStorage.setItem('USER', JSON.stringify(user));
-                firebase.db.ref('/users/' + user.uid).on('value', function(snapshot) {
-                    AsyncStorage.setItem('USER_DATA', JSON.stringify(snapshot.val()));
-                }, function(error) {
-                    console.log(error)
-                });
-                let loginSuccess = true;
-                dispatch(setLoginSuccess({ loginSuccess }));
-                currentlyLoading = false;
-                dispatch(loading.setLoading({ currentlyLoading }));
+                users.getUserData(user);
+                dispatch(setAuthenticatedUser({ user }));
+                dispatch(setLoginSuccess( true ));
+                dispatch(loading.setLoading( false ));
             })
             .catch((error) => {
                 dispatch(setLoginError(error));
-                currentlyLoading = false;
-                dispatch(loading.setLoading({ currentlyLoading }));
+                dispatch(loading.setLoading( false ));
             });
     }
 }
 
+//To Reducers
 export function setAuthenticatedUser({ user }) {
   return {
     type: types.AUTHENTICATED_USER,
