@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { StatusBar, Picker, View, Text, ActivityIndicator } from 'react-native';
+import { StatusBar, Picker, View, Text, ActivityIndicator, TouchableHighlight } from 'react-native';
 import { Button } from 'react-native-elements'
 import globalStyle from './globalStyle';
 import { connect } from 'react-redux';
 import { jsUcFirst } from '../utils/helpful';
 
-let defaultSport = 'basketball';
+let defaultSport = 'baseball';
 
 class PickTeam extends Component {
 
@@ -25,14 +25,21 @@ class PickTeam extends Component {
     this.props.fetchTeams(sport)
   }
 
-  teamPicked() {
+  teamPicked(team) {
+    console.log(team);
+    this.setState({
+      teamInput: team
+    })
+  }
+
+  submitTeam() {
     switch (this.state.teamInput) {
       case '':
         return;
       case '0':
         return;
       default:
-        this.props.setTeam(this.state.sportInput, this.state.teamInput, this.props.user)
+        this.props.setTeam(this.state.sportInput, this.state.team.name, this.props.user)
     }
   }
 
@@ -49,11 +56,20 @@ class PickTeam extends Component {
     this.props.fetchTeams(defaultSport);
   }
 
+  teamMe() {
+    console.log('suck it')
+    console.log(this.state.teamInput.name)
+  }
+
+
   render() {
     return (
         <View>
           <StatusBar hidden={true} />
-          <Text style={[globalStyle.title, globalStyle.margin]}>Pick a Sport</Text>
+          <TouchableHighlight
+              onPress={ () => {this.teamMe()} } >
+            <Text style={[globalStyle.title, globalStyle.margin]}>Pick a Sport</Text>
+          </TouchableHighlight>
           <Picker selectedValue={this.state.sportInput} onValueChange={(sportInput)=>this.sportPicked(sportInput)}>
             {this.sports().map((sport, i) => {
               return <Picker.Item key={i} value={sport} label={jsUcFirst(sport)} />
@@ -61,10 +77,10 @@ class PickTeam extends Component {
           </Picker>
           <Text style={globalStyle.title}>Pick a Team</Text>
           {!this.props.loading ?
-              <Picker style={globalStyle.picker} selectedValue={this.state.teamInput} onValueChange={(teamInput) => this.setState({teamInput})}>
+              <Picker style={globalStyle.picker} selectedValue={this.state.teamInput.name} onValueChange={(teamInput) => this.teamPicked(teamInput)}>
                 <Picker.Item label='Please select an team...' value='0' />
                 {this.teams().map((team, i) => {
-                  return <Picker.Item key={i} value={team.name} label={team.location + " " + team.name} />
+                  return <Picker.Item key={i} value={team} label={team.location + " " + team.name} />
                 })}
               </Picker>
               :
@@ -74,7 +90,7 @@ class PickTeam extends Component {
               </View>
           }
           <View style={globalStyle.buttonContainer}>
-            <Button title="Set Team" backgroundColor="#2a4629" onPress={() => this.teamPicked()}/>
+            <Button title="Set Team" backgroundColor="#2a4629" onPress={() => this.submitTeam()}/>
           </View>
         </View>
     )

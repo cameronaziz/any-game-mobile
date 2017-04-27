@@ -4,12 +4,10 @@ import * as loading from './loading';
 
 export function fetchTeams(sport) {
   return(dispatch) => {
-    let currentlyLoading = true;
-    dispatch(loading.setLoading( { currentlyLoading }));
+    dispatch(loading.setLoading( true ));
     firebase.db.ref('/teams').orderByChild('sport').startAt(sport).endAt(sport).on('value', function (snapshot) {
       dispatch(setSearchedTeams({teams: snapshot.val()}));
-      currentlyLoading = false;
-      dispatch(loading.setLoading( { currentlyLoading }));
+      dispatch(loading.setLoading( false ));
     },function (error) {
       console.log(error)
     })
@@ -18,10 +16,12 @@ export function fetchTeams(sport) {
 
 export function setTeam(sport, team, user) {
   return(dispatch, getState) => {
-    console.log('Setting user\'s ' + sport +  ' team to the ' + team + '.');
-    firebase.db.ref('/users/' + user.uid + '/teams/' + sport).set({
-      team: team
-    })
+    console.log('Setting user\'s ' + sport +  ' team to the ' + team.name + '.');
+    firebase.db.ref('/teams').startAt(team).endAt(team).on('value', function (snapshot) {
+      firebase.db.ref('/users/' + user.uid + '/teams/' + sport).set({
+        team: snapshot.val()
+      })
+    });
   }
 }
 

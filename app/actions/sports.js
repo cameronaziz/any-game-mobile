@@ -6,9 +6,11 @@ export function fetchSports() {
   return(dispatch, getState) => {
       AsyncStorage.getItem('SPORTS', (err, data) => {
       if (data !== null) {
+        console.log('Sports from local');
         data = JSON.parse(data);
         dispatch(setSports({ sports: data }));
       } else {
+        console.log('Sports from Firebase');
         firebase.db.ref('/sports').once('value', function (snapshot) {
           let sports = snapshot.val();
           AsyncStorage.setItem('SPORTS', JSON.stringify(sports));
