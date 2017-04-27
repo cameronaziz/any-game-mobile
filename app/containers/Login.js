@@ -31,7 +31,6 @@ class Login extends Component {
 
   componentDidUpdate() {
     if (this.props.loginSuccess) {
-      this.props.getAllUserTeams(this.props.authenticatedUser);
       this.props.navigate({ key: 'dashboard'});
     }
   }
