@@ -3,21 +3,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ActionCreators } from '../actions';
 
-import globalStyle from './globalStyle';
+import globalStyle from './ContainerStyles/GlobalStyle';
 import LoginStyle from './ContainerStyles/LoginStyle';
 
 import { View, Text, ActivityIndicator} from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 
-
 class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      email: '',
-      password: '',
-    };
   }
 
   loginPress(email, password) {
